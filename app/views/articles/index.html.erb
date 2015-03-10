@@ -1,0 +1,25 @@
+<h1>Listing articles</h1>
+ 
+<h4>Title</h4>
+<ul>
+  <% @articles.each do |article| %>
+  <li><%= link_to article.title, article_path(article) %></li>
+  <% end %>
+</ul>
+
+
+<table border="1">
+  <tr style="background-color:yellow">
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', articles_path %>
