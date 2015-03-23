@@ -1,16 +1,8 @@
-<h1>Listing articles</h1>
+<h1>Listing Articles</h1>
 <%= link_to 'New article', new_article_path %>
- 
-<h4>Title</h4>
-<ul>
-  <% @articles.each do |article| %>
-  <li><%= link_to article.title, article_path(article) %></li>
-  <% end %>
-</ul>
-
-<table border="1">
-  <tr style="background-color:yellow">
-     <th>Title</th>
+<table>
+  <tr>
+    <th>Title</th>
     <th>Text</th>
     <th colspan="3"></th>
   </tr>
@@ -23,9 +15,7 @@
       <td><%= link_to 'Edit', edit_article_path(article) %></td>
       <td><%= link_to 'Destroy', article_path(article),
               method: :delete,
-  data: { confirm: 'Jestes pewien, ze chcesz to zrobic?!?!' } %></td>
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
-
-<%= link_to 'Back', articles_path %>
