@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, except:[:index]
+  load_and_authorize_resource
   
   def index
     @articles = Article.all
@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
  
   def show
     @article = Article.find(params[:id])
+    authorize! :read, @article
   end
  
   def new
