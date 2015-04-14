@@ -32,14 +32,22 @@
     .container
       .row
         .col-lg-9
+          \#{yield}
+          #flash
+            = flash[:notice] if flash[:notice]
+            = flash[:alert] if flash[:alert]
           = bootstrap_flash
-          = yield
+          
         .col-lg-3
           .well.sidebar-nav
             %h3 Sidebar
             %ul.nav.nav-list
               %li.nav-header Sidebar
               %li= link_to 'New article', new_article_path
+              - if user_signed_in?
+                \#{current_user.full_name}#{link_to "Sign out", destroy_user_session_path, method: :delete}
+              - else
+                = link_to "Sign in", new_user_session_path
           / /.well
         / /span
       / /row
