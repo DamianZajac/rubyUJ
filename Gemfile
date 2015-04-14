@@ -46,6 +46,8 @@ group :development, :test do
   gem 'cancancan', '~> 1.10'
   gem "twitter-bootstrap-rails"
   gem "haml-rails", "~> 0.9"
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0'
   
 end
 
