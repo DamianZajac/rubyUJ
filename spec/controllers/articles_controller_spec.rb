@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-before :each do
-  @article = create(:article)
-end
-
 describe ArticlesController do
-   describe 'index' do
+  before :each do
+    @article = create(:article)
+  end 
+  
+  describe 'index' do
      it 'return articles' do
          get :index
       
@@ -16,11 +16,22 @@ describe ArticlesController do
   
   describe 'show' do
      it 'show articles' do
-       get :show, id: article.id
+       get :show, id: @article.id
       
       expect(response).to have_http_status(:success)
-      expect(assigns(:articles)).not_to eq nil
-      expect(assigns(:articles).title).to eq @article.title
+      expect(assigns(:article)).not_to eq nil
+      expect(assigns(:article).title).to eq @article.title
+    end
+  end
+  
+  describe 'new' do
+    it 'return a new articles' do
+      @request.env['devise.mapping'] = Devise.mappings[:admin]
+      sign_in FactoryGirl.create(:admin)
+      get :new
+      
+      expect(response).to have_http_status(:success)
+      expect(assigns(:article)).not_to eq nil
     end
   end
 end
